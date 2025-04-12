@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Rental Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🚲 Bike Rental Prediction</h1>
+        <form action="/predict" method="post">
+
+            <label>Hour (0–23)</label>
+            <input type="number" name="hour" min="0" max="23" required>
+
+            <label>Temperature (°C)</label>
+            <input type="number" step="0.1" name="temperature" required>
+
+            <label>Humidity (%)</label>
+            <input type="number" step="0.1" name="humidity" required>
+
+            <label>Wind Speed (m/s)</label>
+            <input type="number" step="0.1" name="wind_speed" required>
+
+            <label>Visibility (10m)</label>
+            <input type="number" step="0.1" name="visibility" required>
+
+            <label>Dew Point Temperature (°C)</label>
+            <input type="number" step="0.1" name="dew_point" required>
+
+            <label>Solar Radiation (MJ/m2)</label>
+            <input type="number" step="0.1" name="solar_radiation" required>
+
+            <label>Rainfall (mm)</label>
+            <input type="number" step="0.1" name="rainfall" required>
+
+            <label>Snowfall (cm)</label>
+            <input type="number" step="0.1" name="snowfall" required>
+
+            <label>Season</label>
+            <select name="season" required>
+                <option value="Spring">Spring</option>
+                <option value="Summer">Summer</option>
+                <option value="Winter">Winter</option>
+            </select>
+
+            <label>Holiday</label>
+            <select name="holiday" required>
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+
+            <label>Functioning Day</label>
+            <select name="functioning_day" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <h2>🚀 Prediction Result:</h2>
+            <p>{{ prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
